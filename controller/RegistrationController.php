@@ -2,38 +2,46 @@
 
 include __DIR__ . '/../view/index.html';
 
+function cleanParameters($value)
+{
+    var_dump($value);
+    $result = filter_var(trim($_POST[$value]), FILTER_SANITIZE_STRING);
+    var_dump($result);
+
+    return $result;
+}
+function isLoginValid($login)
+{
+    if (mb_strlen($login) < 5 || mb_strlen($login) > 90) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 
-$login = filter_var(trim($_POST['login']),
-    FILTER_SANITIZE_STRING);
-$name = filter_var(trim($_POST['name']),
-    FILTER_SANITIZE_STRING);
-$pass = filter_var(trim($_POST['pass']),
-    FILTER_SANITIZE_STRING);
-$age = filter_var(trim($_POST['age']),
-    FILTER_SANITIZE_STRING);
-$gender = filter_var(trim($_POST['gender']),
-    FILTER_SANITIZE_STRING);
+$login = cleanParameters('login');
+$name = cleanParameters('name');
+$pass = cleanParameters('pass');
+$age = cleanParameters('age');
+$gender = cleanParameters('gender');
 
-if (mb_strlen($login) < 5 || mb_strlen($login) > 90) {
+
+
+if (!isLoginValid($login)) {
     echo 'Недопустимая длина логина';
-    exit();
 } else {
     if (mb_strlen($pass) < 2 || mb_strlen($pass) > 6) {
         echo 'Недопустимая длина пароля (от 2 до 6 символов)';
-        exit();
     } else {
         if (mb_strlen($name) < 3 || mb_strlen($name) > 50) {
             echo 'Недопустимая длина имени';
-            exit();
         } else {
             if ($age < 6 || $age > 70) {
                 echo 'Возраст (от 6 до 70 лет!)';
-                exit();
             } else {
                 if ($gender == '') {
                     echo 'Укажите свой пол!';
-                    exit();
                 }
             }
         }
