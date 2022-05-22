@@ -10,7 +10,7 @@
 <body>
 	<div class="container mt-4" style="width: 500px;" >
 		<h1>Форма регистрации</h1>
-		<form action="registration.php" method="post">
+		<form action="index.php" method="post">
 			<p>Логин:</p>
 			<input type="text" class="form-control" name="login" id="login"> <br>
 			<p>Пароль:</p>
@@ -23,6 +23,7 @@
 			<input type="radio"  class="form-check-input" name="gender" id="gender" value="Мужской"> Мужской <br>
 			<input type="radio" class="form-check-input" name="gender" id="gender" value="Женский"> Женский <br>
 			<button style="margin: 0 auto; display: block;" class="btn btn-success" type="submit">Отправить</button>
+			<input type="hidden" value="registration" name="action">
 		</form>
 
 	</div>

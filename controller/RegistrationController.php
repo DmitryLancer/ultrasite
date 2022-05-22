@@ -40,7 +40,7 @@ if (mb_strlen($login) < 5 || mb_strlen($login) > 90) {
     }
 }
 
-header('Location: /content-page.php', false, 301);
+// header('Location: /content-page.php', false, 301);
 
 
 $mysql = new mysqli('localhost', 'root', 'root', 'test1');
