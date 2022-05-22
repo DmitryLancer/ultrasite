@@ -48,7 +48,7 @@ if (!isLoginValid($login)) {
     }
 }
 
-header('Location: /content-page.php', false, 301);
+// header('Location: /content-page.php', false, 301);
 
 
 $mysql = new mysqli('localhost', 'root', 'root', 'test1');
