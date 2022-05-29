@@ -51,37 +51,38 @@ function isAgeValid($age)
     }
 }
 
-
-
-if (!isLoginValid($login)) {
-    echo 'Недопустимая длина логинаfffff';
-} else {
-    if (!isPassValid($pass)) {
-        echo 'Недопустимая длина пароля (от 2 до 6 символов)';
+if (!empty($_POST)) {
+    if (!isLoginValid($login)) {
+        echo 'Недопустимая длина логинаfffff';
     } else {
-        if (!isPassValid($name)) {
-            echo 'Недопустимая длина имени';
+        if (!isPassValid($pass)) {
+            echo 'Недопустимая длина пароля (от 2 до 6 символов)';
         } else {
-            if (!isPassValid($age)) {
-                echo 'Возраст (от 6 до 70 лет!)';
+            if (!isPassValid($name)) {
+                echo 'Недопустимая длина имени';
             } else {
-                if ($gender == '') {
-                    echo 'Укажите свой пол!';
+                if (!isPassValid($age)) {
+                    echo 'Возраст (от 6 до 70 лет!)';
+                } else {
+                    if ($gender == '') {
+                        echo 'Укажите свой пол!';
+                    }
                 }
             }
         }
     }
+    $mysql = new mysqli('localhost', 'root', 'root', 'test1');
+    $result = $mysql->query("INSERT INTO `users` (`login`, `pass`, `name`, `age`, `gender`) VALUES('$login', '$pass', '$name', '$age', '$gender')");
+    $mysql->close();
+
+
+    if ($result) {
+        include_once __DIR__ . '/../view/content-page.php';
+    } else {
+        echo 'Не удалось сохранить в бд';
+    }
 }
 
-$mysql = new mysqli('localhost', 'root', 'root', 'test1');
-$result = $mysql->query("INSERT INTO `users` (`login`, `pass`, `name`, `age`, `gender`) VALUES('$login', '$pass', '$name', '$age', '$gender')");
-$mysql->close();
 
-
-if ($result) {
-    include_once __DIR__ . '/../view/content-page.php';
-} else {
-    echo 'Не удалось сохранить в бд';
-}
 
 
