@@ -4,11 +4,7 @@ include __DIR__ . '/../view/index.html';
 
 function cleanParameters($value)
 {
-//    var_dump($value);
-    $result = filter_var(trim($_POST[$value]), FILTER_SANITIZE_STRING);
-//    var_dump($result);
-
-    return $result;
+    return filter_var(trim($_POST[$value]), FILTER_SANITIZE_STRING);
 }
 
     $login = cleanParameters('login');
@@ -57,8 +53,6 @@ function isAgeValid($age)
 
 
 
-
-
 if (!isLoginValid($login)) {
     echo 'Недопустимая длина логинаfffff';
 } else {
@@ -79,14 +73,15 @@ if (!isLoginValid($login)) {
     }
 }
 
-//header('Location: /view/content-page.php');
-
-
 $mysql = new mysqli('localhost', 'root', 'root', 'test1');
 $result = $mysql->query("INSERT INTO `users` (`login`, `pass`, `name`, `age`, `gender`) VALUES('$login', '$pass', '$name', '$age', '$gender')");
-var_dump($result);
-
-if ($result)
-
 $mysql->close();
+
+
+if ($result) {
+    include_once __DIR__ . '/../view/content-page.php';
+} else {
+    echo 'Не удалось сохранить в бд';
+}
+
 
