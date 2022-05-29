@@ -1,12 +1,22 @@
 <?php  
 
-	$title = filter_var(trim($_POST['title']),
-	FILTER_SANITIZE_STRING);
-	$body = filter_var(trim($_POST['body']),
-	FILTER_SANITIZE_STRING);
+//	$title = filter_var(trim($_POST['title']),
+//	FILTER_SANITIZE_STRING);
+//	$body = filter_var(trim($_POST['body']),
+//	FILTER_SANITIZE_STRING);
 
-	
 
+function cleanParameters($value)
+{
+//    var_dump($value);
+    $result = filter_var(trim($_POST[$value]), FILTER_SANITIZE_STRING);
+//    var_dump($result);
+
+    return $result;
+}
+
+$title = cleanParameters('title');
+$body = cleanParameters('body');
 
 	// if(mb_strlen($title) < 2 || mb_strlen($title) > 50) {
 		
