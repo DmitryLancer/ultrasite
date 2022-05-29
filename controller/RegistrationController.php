@@ -6,15 +6,18 @@ function cleanParameters($value)
 {
     return filter_var(trim($_POST[$value]), FILTER_SANITIZE_STRING);
 }
+$login = cleanParameters('login');
+$gender = cleanParameters('gender');
+
+require_once __DIR__ . '/../model/User.php';
 
 $user = new \model\User();
 $user->password = cleanParameters('pass');
 $user->name = cleanParameters('name');
+$user->age = cleanParameters('age');
 
 
-$login = cleanParameters('login');
-$age = cleanParameters('age');
-$gender = cleanParameters('gender');
+
 
 
 function isLoginValid($login)
@@ -26,14 +29,7 @@ function isLoginValid($login)
     }
 }
 
-function isAgeValid($age)
-{
-    if ($age < 6 || $age > 70) {
-        return false;
-    } else {
-        return true;
-    }
-}
+
 
 if (!empty($_POST)) {
     if (!isLoginValid($login)) {
@@ -45,7 +41,7 @@ if (!empty($_POST)) {
             if (!$user->isNameValid()) {
                 echo 'Недопустимая длина имени';
             } else {
-                if (!isPassValid($age)) {
+                if (!$user->isAgeValid()) {
                     echo 'Возраст (от 6 до 70 лет!)';
                 } else {
                     if ($gender == '') {
