@@ -7,12 +7,15 @@ function cleanParameters($value)
     return filter_var(trim($_POST[$value]), FILTER_SANITIZE_STRING);
 }
 
-    $login = cleanParameters('login');
-    $name = cleanParameters('pass');
-    $pass = cleanParameters('name');
-    $age = cleanParameters('age');
-    $gender = cleanParameters('gender');
+$user = new \model\User();
+$user->password = cleanParameters('pass');
+var_dump($user->password);
+var_dump($user);
 
+$login = cleanParameters('login');
+$name = cleanParameters('name');
+$age = cleanParameters('age');
+$gender = cleanParameters('gender');
 
 
 function isLoginValid($login)
