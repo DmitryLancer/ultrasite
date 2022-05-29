@@ -83,7 +83,10 @@ if (!isLoginValid($login)) {
 
 
 $mysql = new mysqli('localhost', 'root', 'root', 'test1');
-$mysql->query("INSERT INTO `users` (`login`, `pass`, `name`, `age`, `gender`) VALUES('$login', '$pass', '$name', '$age', '$gender')");
+$result = $mysql->query("INSERT INTO `users` (`login`, `pass`, `name`, `age`, `gender`) VALUES('$login', '$pass', '$name', '$age', '$gender')");
+var_dump($result);
+
+if ($result)
 
 $mysql->close();
 

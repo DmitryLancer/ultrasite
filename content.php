@@ -6,17 +6,17 @@
 //	FILTER_SANITIZE_STRING);
 
 
-function cleanParameters($value)
+function cleanParam($value)
 {
 //    var_dump($value);
-    $result = filter_var(trim($_POST[$value]), FILTER_SANITIZE_STRING);
+    $res = filter_var(trim($_POST[$value]), FILTER_SANITIZE_STRING);
 //    var_dump($result);
 
-    return $result;
+    return $res;
 }
 
-$title = cleanParameters('title');
-$body = cleanParameters('body');
+$title = cleanParam('title');
+$body = cleanParam('body');
 
 	// if(mb_strlen($title) < 2 || mb_strlen($title) > 50) {
 		
