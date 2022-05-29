@@ -9,11 +9,10 @@ function cleanParameters($value)
 
 $user = new \model\User();
 $user->password = cleanParameters('pass');
-var_dump($user->password);
-var_dump($user);
+$user->name = cleanParameters('name');
+
 
 $login = cleanParameters('login');
-$name = cleanParameters('name');
 $age = cleanParameters('age');
 $gender = cleanParameters('gender');
 
@@ -21,24 +20,6 @@ $gender = cleanParameters('gender');
 function isLoginValid($login)
 {
     if (mb_strlen($login) < 5 || mb_strlen($login) > 90) {
-        return false;
-    } else {
-        return true;
-    }
-}
-
-function isPassValid($pass)
-{
-    if (mb_strlen($pass) < 2 || mb_strlen($pass) > 6) {
-        return false;
-    } else {
-        return true;
-    }
-}
-
-function isNameValid($name)
-{
-    if (mb_strlen($name) < 3 || mb_strlen($name) > 50) {
         return false;
     } else {
         return true;
@@ -58,10 +39,10 @@ if (!empty($_POST)) {
     if (!isLoginValid($login)) {
         echo 'Недопустимая длина логинаfffff';
     } else {
-        if (!isPassValid($pass)) {
+        if (!$user->isPassValid()) {
             echo 'Недопустимая длина пароля (от 2 до 6 символов)';
         } else {
-            if (!isPassValid($name)) {
+            if (!$user->isNameValid()) {
                 echo 'Недопустимая длина имени';
             } else {
                 if (!isPassValid($age)) {
