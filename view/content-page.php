@@ -1,6 +1,10 @@
-<?php include_once 'content.php';
+<?php //include_once 'content.php';
+
+include_once __DIR__ . '../content.php';
 
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -25,6 +29,7 @@
 			 </textarea><br>
 			 <?php echo $err['body'] ?>
 			<button style="margin: 0 auto; display: block; margin-top: 35px;" class="btn btn-success" type="submit">Отправить пост!</button>
+            <input type="hidden" value="full" name="content">
 		</form>
 
 	</div>

@@ -4,9 +4,23 @@ namespace model;
 
 class User
 {
+    public $login;
     public $password;
     public $name;
     public $age;
+    public $gender;
+
+
+
+
+    public function isLoginValid()
+    {
+        if (mb_strlen($this->login) < 5 || mb_strlen($this->login) > 90) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public function isPassValid()
     {
@@ -34,4 +48,15 @@ class User
             return true;
         }
     }
+
+    public function isGenderValid()
+    {
+        if ($this->gender == '') {
+            echo 'Укажите свой пол!';
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }
