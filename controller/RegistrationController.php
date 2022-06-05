@@ -64,12 +64,28 @@ if (!empty($_POST)) {
                 }
             }
         }
-//        $temp = 3;
-//        var_dump($temp);
-//        die();
-
         $mysql = new mysqli('localhost', 'root', 'root', 'test1');
+
+        $params = [
+            $user->login,
+            $user->password,
+            $user->name,
+            $user->age,
+            $user->gender,
+        ];
+
+        $str = implode(', ', $params);
+        var_dump($str);
+
+
         $val = '("' . $user->login . '", "' . $user->password . '", "' . $user->name . '", "' .  $user->age . '", "' . $user->gender . '")';
+
+
+
+
+        // 1) завернули в двойные кавычки
+        // 2) разделили запятыми
+        // 3) засунили в скобки
 
         var_dump($val);
 
