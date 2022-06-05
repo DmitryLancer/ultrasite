@@ -64,9 +64,14 @@ if (!empty($_POST)) {
                 }
             }
         }
-        $mysql = new mysqli('localhost', 'root', 'root', 'test1');
-        $result = $mysql->query("INSERT INTO `users` (`login`, `pass`, `name`, `age`, `gender`) VALUES('isLoginValid()', 'isPassValid()', 'isNameValid()', 'isAgeValid()', 'isGenderValid()')");
+//        $temp = 3;
+//        var_dump($temp);
+//        die();
 
+        $mysql = new mysqli('localhost', 'root', 'root', 'test1');
+        $sql = 'INSERT INTO `users` (`login`, `pass`, `name`, `age`, `gender`) VALUES(isLoginValid(), isPassValid(), isNameValid(), isAgeValid(), isGenderValid())';
+        $result = $mysql->query($sql);
+        var_dump($sql);
         $mysql->close();
     }
 
