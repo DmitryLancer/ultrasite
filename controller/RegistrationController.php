@@ -69,12 +69,19 @@ if (!empty($_POST)) {
 //        die();
 
         $mysql = new mysqli('localhost', 'root', 'root', 'test1');
-        $sql = 'INSERT INTO `users` 
-            (`login`, `pass`, `name`, `age`, `gender`) 
-            VALUES(' . $user->login . ', isPassValid(), isNameValid(), isAgeValid(), isGenderValid())';
+        $val = '("' . $user->login . '", "' . $user->password . '", "' . $user->name . '", "' .  $user->age . '", "' . $user->gender . '")';
+
+        var_dump($val);
+
+        $sql = 'INSERT INTO `users`
+            (`login`, `pass`, `name`, `age`, `gender`)
+            VALUES' . $val;
+
 
         $result = $mysql->query($sql);
         var_dump($sql);
+        var_dump($result);
+
         $mysql->close();
     }
 
