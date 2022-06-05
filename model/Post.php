@@ -11,14 +11,14 @@ class Post
 
     public function strTitle()
     {
-        $str = mb_strlen($this -> title);
+        $titleLenght = mb_strlen($this->title);
 
-        return $str;
+        return $titleLenght;
     }
 
     public function strContent()
     {
-        $str = mb_strlen($this -> content);
+        $str = mb_strlen($this->content);
 
         return $str;
     }
