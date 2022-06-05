@@ -75,19 +75,13 @@ if (!empty($_POST)) {
         ];
         $newParams = [];
         foreach ($params as $param) {
-            var_dump($param);
             $newParam = '"' . $param . '"';
-            var_dump($newParam);
             $newParams[] = $newParam;
         }
 
-        var_dump($newParams);
-
         $str = implode(', ', $newParams);
-        var_dump($str);
+        $val = '(' . $str . ')';
 
-
-        $val = '("' . $user->login . '", "' . $user->password . '", "' . $user->name . '", "' .  $user->age . '", "' . $user->gender . '")';
 
 
 
