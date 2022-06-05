@@ -73,8 +73,17 @@ if (!empty($_POST)) {
             $user->age,
             $user->gender,
         ];
+        $newParams = [];
+        foreach ($params as $param) {
+            var_dump($param);
+            $newParam = '"' . $param . '"';
+            var_dump($newParam);
+            $newParams[] = $newParam;
+        }
 
-        $str = implode(', ', $params);
+        var_dump($newParams);
+
+        $str = implode(', ', $newParams);
         var_dump($str);
 
 
