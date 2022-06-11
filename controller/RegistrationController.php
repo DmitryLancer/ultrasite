@@ -1,20 +1,26 @@
 <?php
 
-include __DIR__ . '/../view/index.html';
+include __DIR__ . '/../view/reigistration-page.php';
+
+
+
+require_once __DIR__ . '/../model/User.php';
+
+
+
+$user = new \model\User();
 
 function cleanParameters($value)
 {
     return filter_var(trim($_POST[$value]), FILTER_SANITIZE_STRING);
 }
 
-require_once __DIR__ . '/../model/User.php';
-
-$user = new \model\User();
 $user->login = cleanParameters('login');
-$user->password = cleanParameters('pass');
+$user->pass = cleanParameters('pass');
 $user->name = cleanParameters('name');
 $user->age = cleanParameters('age');
 $user->gender = cleanParameters('gender');
+
 
 
 if (!empty($_POST)) {
@@ -44,16 +50,20 @@ if (!empty($_POST)) {
 
         $result = $mysql->query($sql);
         $mysql->close();
+
     }
 }
 
-//if ($result = $_POST['action'] == 'registration')  {
-//    include_once __DIR__ . '/../view/content-page.php';
-//
-//} else {
-//    echo 'Не удалось сохранить в бд';
-//
-//}
+
+
+
+if ($result = $_POST['action'] == 'registration') {
+    include_once __DIR__ . '/../view/content-page.php';
+
+} else {
+    echo 'Не удалось сохранить в бд';
+}
+
 
 
 

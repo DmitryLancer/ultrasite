@@ -6,7 +6,27 @@ class Post
 {
 
     public $title;
-    public $content;
+    public $body;
+
+
+    public function prepareValuesSql()
+    {
+        $params = [
+            $this->title,
+            $this->body,
+
+        ];
+        $newParams = [];
+        foreach ($params as $param) {
+            $newParam = '"' . $param . '"';
+            $newParams[] = $newParam;
+        }
+
+        $str = implode(', ', $newParams);
+        $val = '(' . $str . ')';
+
+        return $val;
+    }
 
 
     public function strTitle()
@@ -16,12 +36,26 @@ class Post
         return $titleLenght;
     }
 
-    public function strContent()
+    public function strBody()
     {
-        $str = mb_strlen($this->content);
+        $bodyLenght = mb_strlen($this->body);
 
-        return $str;
+        return $bodyLenght;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

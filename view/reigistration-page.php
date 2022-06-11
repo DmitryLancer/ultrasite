@@ -1,3 +1,6 @@
+<?php
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -23,7 +26,9 @@
 			<input type="radio"  class="form-check-input" name="gender" id="gender" value="Мужской"> Мужской <br>
 			<input type="radio" class="form-check-input" name="gender" id="gender" value="Женский"> Женский <br>
 			<button style="margin: 0 auto; display: block;" class="btn btn-success" type="submit">Отправить</button>
+-
 			<input type="hidden" value="registration" name="action">
+
 		</form>
 
 	</div>

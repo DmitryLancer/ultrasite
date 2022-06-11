@@ -1,4 +1,5 @@
-<?php  
+<?php
+//include __DIR__ . '/../view/content-page.php';
 
 //	$title = filter_var(trim($_POST['title']),
 //	FILTER_SANITIZE_STRING);
@@ -6,29 +7,39 @@
 //	FILTER_SANITIZE_STRING);
 
 
-function cleanParam($value)
-{
-//    var_dump($value);
-    $res = filter_var(trim($_POST[$value]), FILTER_SANITIZE_STRING);
-//    var_dump($result);
-
-    return $res;
-}
-
-$title = cleanParam('title');
-$content = cleanParam('content');
-
-
-function strlen($value)
-{
-    $str = mb_strlen($value);
-
-    return $str;
-}
+//function cleanParam($value)
+//{
+////    var_dump($value);
+//    $res = filter_var(trim($_POST[$value]), FILTER_SANITIZE_STRING);
+////    var_dump($result);
+//
+//    return $res;
+//}
+//
+//$title = cleanParam('title');
+//$content = cleanParam('content');
 
 
-require_once __DIR__ . '/../model/Post.php';
+//function strlen($value)
+//{
+//    $str = mb_strlen($value);
+//
+//    return $str;
+//}
+//
+//
+require_once __DIR__ . '/model/Post.php';
 $post = new \model\Post();
+
+
+function cleanParameters($value)
+{
+    return filter_var(trim($_POST[$value]), FILTER_SANITIZE_STRING);
+}
+
+$post->title = cleanParameters('title');
+$post->body = cleanParameters('body');
+
 
 
 
@@ -49,12 +60,12 @@ $post = new \model\Post();
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!($_POST['action'] == 'registration')) {
-		if (!$post->strTitle() < 2 ||  !$post->strTitle() > 50) {
+		if ($post->strTitle() < 2 ||  $post->strTitle() > 50) {
 			$err['title'] = '<small class="text-danger">Недопустимая длина заголовка (от 2 до 50 символов)</small>';
 			$flag = 1;
 			
 		}
-		if (!$post->strContent() < 10 ||  !$post->strContent() > 250) {
+		if ($post->strBody() < 10 ||  $post->strBody() > 250) {
 			$err['body'] = '<small class="text-danger">Недопустимая длина текста (от 10 до 250 символов)</small>';
 			$flag = 1;
 			
@@ -62,10 +73,19 @@ $post = new \model\Post();
 		if ($flag == 0) {
 			Header("Location:/content-page.php" . $_SERVER['HTTP_REFER'] . "?mes=success");
 
-			$mysql = new mysqli('localhost', 'root', 'root', 'test2');
-			$mysql->query("INSERT INTO `content-bd` (`title`, `body`) VALUES('$title', '$body')");
-		
-			$mysql->close();
+            $mysql = new mysqli('localhost', 'root', 'root', 'test2');
+
+            $sql = 'INSERT INTO `content-bd`
+            (`title`, `body`)
+            VALUES' . $post->prepareValuesSql();
+
+            $result = $mysql->query($sql);
+            $mysql->close();
+
+//			$mysql = new mysqli('localhost', 'root', 'root', 'test2');
+//			$mysql->query("INSERT INTO `content-bd` (`title`, `body`) VALUES('$title', '$body')");
+//
+//			$mysql->close();
 
             if ($_GET['mes'] == 'success') {
                 $err['success'] = '<div class="alert alert-success">Пост успешно отправлен!</div>';

@@ -5,7 +5,7 @@ namespace model;
 class User
 {
     public $login;
-    public $password;
+    public $pass;
     public $name;
     public $age;
     public $gender;
@@ -15,7 +15,7 @@ class User
     {
         $params = [
             $this->login,
-            $this->password,
+            $this->pass,
             $this->name,
             $this->age,
             $this->gender,
@@ -44,7 +44,7 @@ class User
 
     public function isPassValid()
     {
-        if (mb_strlen($this->password) < 2 || mb_strlen($this->password) > 6) {
+        if (mb_strlen($this->pass) < 2 || mb_strlen($this->pass) > 6) {
             return false;
         } else {
             return true;
@@ -78,5 +78,7 @@ class User
             return true;
         }
     }
+
+
 
 }
