@@ -70,27 +70,58 @@ $post->body = cleanParameters('body');
 			$flag = 1;
 			
 		}
-		if ($flag == 0) {
-			Header("Location:/content-page.php" . $_SERVER['HTTP_REFER'] . "?mes=success");
+        // ЭТО ТО , ЧТО БЫЛО И РАБОТАЛО
+//		if ($flag == 0) {
+//			Header("Location:/content-page.php" . $_SERVER['HTTP_REFER'] . "?mes=success");
+//
+//            $mysql = new mysqli('localhost', 'root', 'root', 'test2');
+//
+//            $sql = 'INSERT INTO `content-bd`
+//            (`title`, `body`)
+//            VALUES' . $post->prepareValuesSql();
+//
+//            $result = $mysql->query($sql);
+//            $mysql->close();
 
-            $mysql = new mysqli('localhost', 'root', 'root', 'test2');
 
-            $sql = 'INSERT INTO `content-bd`
-            (`title`, `body`)
-            VALUES' . $post->prepareValuesSql();
+            if ($flag == 0) {
+                Header("Location:/view/content-page.php" . $_SERVER['HTTP_REFER'] . "?mes=success");
 
-            $result = $mysql->query($sql);
-            $mysql->close();
+                $dsn = 'mysql:host=localhost;dbname=test2';
+                $pdo = new PDO($dsn, 'root', 'root');
+
+                $sql = 'INSERT INTO `content-bd`
+                (`title`, `body`)
+                VALUES' . $post->prepareValuesSql();
+
+                $result = $pdo->query($sql);
+//                $pdo->close();
+
+
+                if ($_GET['mes'] == 'success') {
+                    $err['success'] = '<div class="alert alert-success">Пост успешно отправлен!</div>';
+                }
+
+            }
+
+
+
+
+//                $mysql = new mysqli('localhost', 'root', 'root', 'test2');
+//
+//                $sql = 'INSERT INTO `content-bd`
+//            (`title`, `body`)
+//            VALUES' . $post->prepareValuesSql();
+//
+//                $result = $mysql->query($sql);
+//                $mysql->close();
 
 //			$mysql = new mysqli('localhost', 'root', 'root', 'test2');
 //			$mysql->query("INSERT INTO `content-bd` (`title`, `body`) VALUES('$title', '$body')");
 //
 //			$mysql->close();
 
-            if ($_GET['mes'] == 'success') {
-                $err['success'] = '<div class="alert alert-success">Пост успешно отправлен!</div>';
-            }
-		}
+
 
 //            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //                if (!($_POST['action'] == 'registration')) {

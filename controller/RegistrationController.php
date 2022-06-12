@@ -42,14 +42,16 @@ if (!empty($_POST)) {
                 }
             }
         }
-        $mysql = new mysqli('localhost', 'root', 'root', 'test1');
+
+        $dsn = 'mysql:host=localhost;dbname=test1';
+        $pdo = new PDO($dsn, 'root', 'root');
 
         $sql = 'INSERT INTO `users`
-            (`login`, `pass`, `name`, `age`, `gender`)
-            VALUES' . $user->prepareValuesSql();
+                (`login`, `pass`, `name`, `age`, `gender`)
+                VALUES' . $user->prepareValuesSql();
 
-        $result = $mysql->query($sql);
-        $mysql->close();
+        $result = $pdo->query($sql);
+
 
     }
 }
