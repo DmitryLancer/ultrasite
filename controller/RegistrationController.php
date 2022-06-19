@@ -48,15 +48,6 @@ if (!empty($_POST)) {
         }
     }
 
-// рабочая схема!!!
-//$dsn = 'mysql:host=localhost;dbname=test3';
-////$pdo = new PDO($dsn, 'root', 'root');
-////
-////$sql = 'INSERT INTO `users`
-////                (`login`, `pass`, `name`, `age`, `gender`)
-////                VALUES' . $user->prepareValuesSql();
-////
-////$result = $pdo->query($sql);
 
 
 

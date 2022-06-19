@@ -1,6 +1,6 @@
-<?php include_once '../content.php';
+<?php
 
-//include_once __DIR__ . '../content.php';
+include_once __DIR__ . '/../content.php';
 
 ?>
 
