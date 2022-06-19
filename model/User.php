@@ -11,26 +11,26 @@ class User
     public $gender;
 
 
-    public function prepareValuesSql()
-    {
-        $params = [
-            $this->login,
-            $this->pass,
-            $this->name,
-            $this->age,
-            $this->gender,
-        ];
-        $newParams = [];
-        foreach ($params as $param) {
-            $newParam = '"' . $param . '"';
-            $newParams[] = $newParam;
-        }
-
-        $str = implode(', ', $newParams);
-        $val = '(' . $str . ')';
-
-        return $val;
-    }
+//    public function prepareValuesSql()
+//    {
+//        $params = [
+//            $this->login,
+//            $this->pass,
+//            $this->name,
+//            $this->age,
+//            $this->gender,
+//        ];
+//        $newParams = [];
+//        foreach ($params as $param) {
+//            $newParam = '"' . $param . '"';
+//            $newParams[] = $newParam;
+//        }
+//
+//        $str = implode(', ', $newParams);
+//        $val = '(' . $str . ')';
+//
+//        return $val;
+//    }
 
 
     public function isLoginValid()

@@ -29,7 +29,7 @@
 			 </textarea><br>
 			 <?php echo $err['body'] ?>
 			<button style="margin: 0 auto; display: block; margin-top: 35px;" class="btn btn-success" type="submit">Отправить пост!</button>
-            <input type="hidden" value="full" name="content">
+            <input type="hidden" value="post" name="action">
 		</form>
 
 	</div>

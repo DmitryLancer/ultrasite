@@ -84,27 +84,40 @@ $post->body = cleanParameters('body');
 //            $mysql->close();
 
 
+           // !!!!РАБОЧАЯ ТЕМА
+//            if ($flag == 0) {
+//                Header("Location:/view/content-page.php" . $_SERVER['HTTP_REFER'] . "?mes=success");
+//
+//                $dsn = 'mysql:host=localhost;dbname=test1';
+//                $pdo = new PDO($dsn, 'root', 'root');
+//
+//                $sql = 'INSERT INTO `post`
+//                (`title`, `body`, `author_id`)
+//                VALUES' . $post->prepareValuesSql();
+//
+//                $result = $pdo->query($sql);
+////                $pdo->close();
+//
+//
+//                if ($_GET['mes'] == 'success') {
+//                    $err['success'] = '<div class="alert alert-success">Пост успешно отправлен!</div>';
+//                }
+//
+//            }
+//
+//
             if ($flag == 0) {
-                Header("Location:/view/content-page.php" . $_SERVER['HTTP_REFER'] . "?mes=success");
+            $dbh = new PDO('mysql:host=localhost;dbname=test3', 'root', 'root');
+            $sql = 'INSERT INTO post (title, body, author_id) VALUES (:title, :body, :author_id)';
+            $stmt = $dbh->prepare($sql);
+            $result = $stmt->execute([
+                'title' => $post->title,
+                'body' => $post->body,
 
-                $dsn = 'mysql:host=localhost;dbname=test2';
-                $pdo = new PDO($dsn, 'root', 'root');
-
-                $sql = 'INSERT INTO `content-bd`
-                (`title`, `body`)
-                VALUES' . $post->prepareValuesSql();
-
-                $result = $pdo->query($sql);
-//                $pdo->close();
-
-
-                if ($_GET['mes'] == 'success') {
-                    $err['success'] = '<div class="alert alert-success">Пост успешно отправлен!</div>';
-                }
+            ]);
+            print "Пользователь зарегистрирован";
 
             }
-
-
 
 
 //                $mysql = new mysqli('localhost', 'root', 'root', 'test2');

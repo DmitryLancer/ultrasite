@@ -1,5 +1,7 @@
 <?php
 
+
+
 include __DIR__ . '/../view/reigistration-page.php';
 
 
@@ -21,9 +23,11 @@ $user->name = cleanParameters('name');
 $user->age = cleanParameters('age');
 $user->gender = cleanParameters('gender');
 
-
+//Сохранять должен только если все поля заполнены правильно
 
 if (!empty($_POST)) {
+
+}
     if (!$user->isLoginValid()) {
         echo 'Недопустимая длина логина';
     } else {
@@ -42,22 +46,33 @@ if (!empty($_POST)) {
                 }
             }
         }
-
-        $dsn = 'mysql:host=localhost;dbname=test1';
-        $pdo = new PDO($dsn, 'root', 'root');
-
-        $sql = 'INSERT INTO `users`
-                (`login`, `pass`, `name`, `age`, `gender`)
-                VALUES' . $user->prepareValuesSql();
-
-        $result = $pdo->query($sql);
-
-
     }
-}
+
+// рабочая схема!!!
+//$dsn = 'mysql:host=localhost;dbname=test3';
+////$pdo = new PDO($dsn, 'root', 'root');
+////
+////$sql = 'INSERT INTO `users`
+////                (`login`, `pass`, `name`, `age`, `gender`)
+////                VALUES' . $user->prepareValuesSql();
+////
+////$result = $pdo->query($sql);
 
 
 
+$dbh = new PDO('mysql:host=localhost;dbname=test3', 'root', 'root');
+$sql = 'INSERT INTO users (login, pass, name, age, gender) VALUES (:login, :pass, :name, :age, :gender)';
+$stmt = $dbh->prepare($sql);
+$result = $stmt->execute([
+    'login' => $user->login,
+    'pass' => $user->pass,
+    'name' => $user->name,
+    'age' => $user->age,
+    'gender' => $user->gender,
+]);
+
+
+//var_dump($result);
 
 if ($result = $_POST['action'] == 'registration') {
     include_once __DIR__ . '/../view/content-page.php';
