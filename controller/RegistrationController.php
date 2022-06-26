@@ -4,7 +4,7 @@ namespace controller;
 
 use PDO;
 
-class RegistrationController
+class RegistrationController extends Controller
 {
     public function actionIndex()
     {
@@ -14,16 +14,11 @@ class RegistrationController
 
         $user = new \model\User();
 
-        function cleanParameters($value)
-        {
-            return filter_var(trim($_POST[$value]), FILTER_SANITIZE_STRING);
-        }
-
-        $user->login = cleanParameters('login');
-        $user->pass = cleanParameters('pass');
-        $user->name = cleanParameters('name');
-        $user->age = cleanParameters('age');
-        $user->gender = cleanParameters('gender');
+        $user->login = $this->cleanParameters('login');
+        $user->pass = $this->cleanParameters('pass');
+        $user->name = $this->cleanParameters('name');
+        $user->age = $this->cleanParameters('age');
+        $user->gender = $this->cleanParameters('gender');
 
 //Сохранять должен только если все поля заполнены правильно
 
