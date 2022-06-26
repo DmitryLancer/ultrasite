@@ -49,14 +49,11 @@ class User
 
     public function isGenderValid()
     {
-        if ($this->gender == '') {
+        if ($this->gender == " ") {
             echo 'Укажите свой пол!';
             return false;
         } else {
             return true;
         }
     }
-
-
-
 }
