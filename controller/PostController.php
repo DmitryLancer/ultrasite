@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function actionIndex()
     {
-        include __DIR__ . '/../view/content-page.php';
+        include __DIR__ . '/../view/content.php';
 
         require __DIR__ . '/../model/Post.php';
 

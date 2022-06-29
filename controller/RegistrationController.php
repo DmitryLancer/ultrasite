@@ -9,7 +9,7 @@ class RegistrationController extends Controller
 {
     public function actionIndex()
     {
-        include __DIR__ . '/../view/reigistration-page.php';
+        include __DIR__ . '/../view/reigistration.php';
 
         require_once __DIR__ . '/../model/User.php';
 
@@ -29,7 +29,7 @@ class RegistrationController extends Controller
             $database->temp2($user);
 
             if ($result = $_POST['action'] == 'registration') {
-                include_once __DIR__ . '/../view/content-page.php';
+                include_once __DIR__ . '/../view/content.php';
 
                 } else {
                     echo 'Не удалось сохранить в бд';
