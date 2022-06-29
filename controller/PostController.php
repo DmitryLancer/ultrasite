@@ -3,6 +3,7 @@
 namespace controller;
 
 
+use model\DataBase;
 use PDO;
 
 class PostController extends Controller
@@ -14,6 +15,7 @@ class PostController extends Controller
         require __DIR__ . '/../model/Post.php';
 
         $post = new \model\Post();
+        $database = new DataBase();
 
         $post->title = $this->cleanParameters('title');
         $post->body = $this->cleanParameters('body');
@@ -42,16 +44,7 @@ class PostController extends Controller
                 }
 
                 if ($flag == 0) {
-                    $dbh = new PDO('mysql:host=localhost;dbname=test3', 'root', 'root');
-
-                    $sql = 'INSERT INTO post (title, body, author_id) VALUES (:title, :body, :author_id)';
-                    $stmt = $dbh->prepare($sql);
-                    $result = $stmt->execute([
-                        'title' => $post->title,
-                        'body' => $post->body,
-                        'author_id' => 1,
-
-                    ]);
+                    $database->temp($post);
                 }
             }
         }

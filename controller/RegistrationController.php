@@ -2,6 +2,7 @@
 
 namespace controller;
 
+use model\DataBase;
 use PDO;
 
 class RegistrationController extends Controller
@@ -22,18 +23,10 @@ class RegistrationController extends Controller
 
 //Сохранять должен только если все поля заполнены правильно
 
-        if ($user->isLoginValid() && $user->isPassValid() && $user->isNameValid() && $user->isAgeValid() && $user->isGenderValid()) {
 
-            $dbh = new PDO('mysql:host=localhost;dbname=test3', 'root', 'root');
-            $sql = 'INSERT INTO users (login, pass, name, age, gender) VALUES (:login, :pass, :name, :age, :gender)';
-            $stmt = $dbh->prepare($sql);
-            $result = $stmt->execute([
-                'login' => $user->login,
-                'pass' => $user->pass,
-                'name' => $user->name,
-                'age' => $user->age,
-                'gender' => $user->gender,
-            ]);
+        if ($user->isLoginValid() && $user->isPassValid() && $user->isNameValid() && $user->isAgeValid() && $user->isGenderValid()) {
+            $database = new DataBase();
+            $database->temp2($user);
 
             if ($result = $_POST['action'] == 'registration') {
                 include_once __DIR__ . '/../view/content-page.php';
