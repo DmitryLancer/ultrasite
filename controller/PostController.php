@@ -44,7 +44,15 @@ class PostController extends Controller
                 }
 
                 if ($flag == 0) {
-                    $database->savePost($post);
+                   // $database->savePost($post);
+                    $sql = 'INSERT INTO post (title, body, author_id) VALUES (:title, :body, :author_id)';
+                    $parameters = [
+                        'title' => $post->title,
+                        'body' => $post->body,
+                        'author_id' => 1,
+                    ];
+
+                    $database->execute($sql, $parameters);
                 }
             }
         }
