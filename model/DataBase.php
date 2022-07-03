@@ -12,7 +12,12 @@ class DataBase
         $this->dbh = new PDO('mysql:host=localhost;dbname=test3', 'root', 'root');
     }
 
-    public function temp($post)
+    public function save()
+    {
+
+    }
+
+    public function savePost($post)
     {
         $sql = 'INSERT INTO post (title, body, author_id) VALUES (:title, :body, :author_id)';
         $stmt = $this->dbh->prepare($sql);
@@ -24,7 +29,7 @@ class DataBase
         ]);
     }
 
-    public function temp2($user)
+    public function saveUser($user)
     {
         $sql = 'INSERT INTO users (login, pass, name, age, gender) VALUES (:login, :pass, :name, :age, :gender)';
         $stmt = $this->dbh->prepare($sql);

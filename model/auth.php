@@ -22,8 +22,5 @@ if(count($user) == 0) {
 setcookie('user', $user['name'], time() + 3600, '/');
 
 
-//$sql = 'INSERT INTO `users` (`login`, `pass`, `name`, `age`, `gender`) VALUES(isLoginValid(), isPassValid(), isNameValid(), isAgeValid(), isGenderValid())';
-//$result = $mysql->query($sql);
-
 $mysql->close();
 header('Location: /');

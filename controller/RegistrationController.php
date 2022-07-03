@@ -26,7 +26,7 @@ class RegistrationController extends Controller
 
         if ($user->isLoginValid() && $user->isPassValid() && $user->isNameValid() && $user->isAgeValid() && $user->isGenderValid()) {
             $database = new DataBase();
-            $database->temp2($user);
+            $database->saveUser($user);
 
             if ($result = $_POST['action'] == 'registration') {
                 include_once __DIR__ . '/../view/content.php';

@@ -44,7 +44,7 @@ class PostController extends Controller
                 }
 
                 if ($flag == 0) {
-                    $database->temp($post);
+                    $database->savePost($post);
                 }
             }
         }
