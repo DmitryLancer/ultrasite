@@ -21,8 +21,10 @@
         <p>Пароль:</p>
         <input type="text" class="form-control" name="pass" id="pass"> <br>
 
-        <button style="margin: 0 auto; display: block;" class="btn btn-success" type="">Авторизоваться</button>
+        <button style="margin: 15px auto; display: block;" class="btn btn-success" type="">Авторизоваться</button>
+        <button style="margin: 0 auto; display: block;" class="btn btn-success" type="">Зарегистрироваться</button>
     </form>
+
 
     <?php else: ?>
         <p>Привет <?=$_COOKIE['user']?> . Чтобы выйти нажмите <a href="../model/exit.php ">сюда</a> </p>

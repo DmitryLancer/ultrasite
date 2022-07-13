@@ -3,10 +3,15 @@
 namespace controller;
 
 use model\DataBase;
+use mysqli;
 use PDO;
+
+
 
 class RegistrationController extends Controller
 {
+
+
     public function actionIndex()
     {
         include __DIR__ . '/../view/reigistration.php';
@@ -64,29 +69,36 @@ class RegistrationController extends Controller
     public function actionLogin()
     {
         // КАК ПОДКЛЮЧИТЬ ЧИСТКУ КОДА ?????
+        require_once __DIR__ . '/../model/Login.php';
 
-        $login = filter_var(trim($_POST['login']), FILTER_SANITIZE_STRING);
-        $pass = filter_var(trim($_POST['pass']), FILTER_SANITIZE_STRING);
+        $login = new \model\Login();
 
-        $mysql = new mysqli('localhost', 'root', 'root', 'test3');
+        include __DIR__ . '/../view/login.php';
 
-        $result = $mysql->query("SELECT * FROM `users` WHERE `login` = '$login' and `pass` = '$pass'");
+        $database = new DataBase();
+        $sql = $login->prepareInsertSQL();
+        $parameters = $login->prepareParameters();
+        $database->execute($sql, $parameters);
 
-        $user = $result->fetch_assoc();
+//        $mysql = new mysqli('localhost', 'root', 'root', 'test3');
+//
+//        $result = $mysql->query("SELECT * FROM `users` WHERE `login` = '$login' and `pass` = '$pass'");
 
-        if(count($user) == 0) {
+//        $user = $result->fetch_assoc();
+
+        if(count($database) == 0) {
             echo 'Пользователь не найден';
             exit();
         }
 
-        setcookie('user', $user['name'], time() + 3600, '/');
+        setcookie('user', $database['name'], time() + 3600, '/');
 
 
-        $mysql->close();
+//        $mysql->close();
         header('Location: /');
 
 
-
-
     }
+
+
 }
