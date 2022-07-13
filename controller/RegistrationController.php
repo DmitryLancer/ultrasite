@@ -15,6 +15,7 @@ class RegistrationController extends Controller
 
         $user = new \model\User();
 
+
         $user->login = $this->cleanParameters('login');
         $user->pass = $this->cleanParameters('pass');
         $user->name = $this->cleanParameters('name');
@@ -26,7 +27,9 @@ class RegistrationController extends Controller
 
         if ($user->isLoginValid() && $user->isPassValid() && $user->isNameValid() && $user->isAgeValid() && $user->isGenderValid()) {
             $database = new DataBase();
-            $database->saveUser($user);
+            $sql = $user->prepareInsertSQL();
+            $parameters = $user->prepareParameters();
+            $database->execute($sql, $parameters);
 
             if ($result = $_POST['action'] == 'registration') {
                 include_once __DIR__ . '/../view/content.php';
@@ -57,5 +60,33 @@ class RegistrationController extends Controller
                 }
             }
         }
+    }
+    public function actionLogin()
+    {
+        // КАК ПОДКЛЮЧИТЬ ЧИСТКУ КОДА ?????
+
+        $login = filter_var(trim($_POST['login']), FILTER_SANITIZE_STRING);
+        $pass = filter_var(trim($_POST['pass']), FILTER_SANITIZE_STRING);
+
+        $mysql = new mysqli('localhost', 'root', 'root', 'test3');
+
+        $result = $mysql->query("SELECT * FROM `users` WHERE `login` = '$login' and `pass` = '$pass'");
+
+        $user = $result->fetch_assoc();
+
+        if(count($user) == 0) {
+            echo 'Пользователь не найден';
+            exit();
+        }
+
+        setcookie('user', $user['name'], time() + 3600, '/');
+
+
+        $mysql->close();
+        header('Location: /');
+
+
+
+
     }
 }

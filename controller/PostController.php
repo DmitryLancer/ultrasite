@@ -15,10 +15,16 @@ class PostController extends Controller
         require __DIR__ . '/../model/Post.php';
 
         $post = new \model\Post();
+
         $database = new DataBase();
 
         $post->title = $this->cleanParameters('title');
         $post->body = $this->cleanParameters('body');
+        $post->author_id = 1;
+        echo '<pre>';
+        var_dump($post);
+        echo '<\pre>';
+        die();
 
         $errors = [];
 
@@ -45,12 +51,8 @@ class PostController extends Controller
 
                 if ($flag == 0) {
                    // $database->savePost($post);
-                    $sql = 'INSERT INTO post (title, body, author_id) VALUES (:title, :body, :author_id)';
-                    $parameters = [
-                        'title' => $post->title,
-                        'body' => $post->body,
-                        'author_id' => 1,
-                    ];
+                    $sql = $post->prepareInsertSQL();
+                    $parameters = $post->prepareParameters();
 
                     $database->execute($sql, $parameters);
                 }
