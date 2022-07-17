@@ -17,7 +17,7 @@ ini_set('display_startup_errors', 1);
 
 include_once __DIR__ . '/controller/RegistrationController.php';
 
-if(empty($POST)) {
+if(empty($_POST)) {
     $RegistrationController = new \controller\RegistrationController();
     $RegistrationController->actionIndex();
 
