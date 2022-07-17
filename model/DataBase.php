@@ -3,7 +3,7 @@
 namespace model;
 use PDO;
 
-class DataBase implements \Countable
+class DataBase
 {
     public $dbh;
 

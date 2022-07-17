@@ -21,10 +21,10 @@ class PostController extends Controller
         $post->title = $this->cleanParameters('title');
         $post->body = $this->cleanParameters('body');
         $post->author_id = 1;
-        echo '<pre>';
-        var_dump($post);
-        echo '<\pre>';
-        die();
+//        echo '<pre>';
+//        var_dump($post);
+//        echo '<\pre>';
+//        die();
 
         $errors = [];
 
