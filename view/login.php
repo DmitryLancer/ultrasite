@@ -15,11 +15,12 @@
     if($_COOKIE['user'] == ''):
         ?>
     <h1>Форма авторизации</h1>
-    <form action="../model/auth.php" method="post">
+    <form action="../index.php" method="post">
         <p>Логин:</p>
         <input type="text" class="form-control" name="login" id="login"> <br>
         <p>Пароль:</p>
         <input type="text" class="form-control" name="pass" id="pass"> <br>
+        <input type="hidden" value="login" name="action">
 
         <button style="margin: 0 auto; display: block;" class="btn btn-success" type="">Авторизоваться</button>
     </form>
