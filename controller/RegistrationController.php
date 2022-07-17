@@ -20,7 +20,7 @@ class RegistrationController extends Controller
 
         $user = new \model\User();
 
-
+        //to do: Переписать часть кода
         $user->login = $this->cleanParameters('login');
         $user->pass = $this->cleanParameters('pass');
         $user->name = $this->cleanParameters('name');
