@@ -3,6 +3,7 @@
 namespace controller;
 
 use model\DataBase;
+use mysqli;
 use PDO;
 
 class RegistrationController extends Controller
