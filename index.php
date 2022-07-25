@@ -23,14 +23,16 @@ if(empty($_POST)) {
 
 }
 
-if ($_POST['action'] == 'login') {
-    $RegistrationController = new \controller\RegistrationController();
-    $RegistrationController->actionLogin();
-}
-
 if ($_POST['action'] == 'post') {
     include_once __DIR__ . '/controller/PostController.php';
     $postController = new \controller\PostController();
     $postController->actionIndex();
 }
+
+if ($_POST['action'] == 'login') {
+    $RegistrationController = new \controller\RegistrationController();
+    $RegistrationController->actionLogin();
+}
+
+
 

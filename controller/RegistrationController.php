@@ -10,9 +10,9 @@ class RegistrationController extends Controller
 {
     public function actionIndex()
     {
-        include __DIR__ . '/../view/reigistration.php';
+        include __DIR__ . '/../view/registration.php';
 
-        require_once __DIR__ . '/../model/User.php';
+        require __DIR__ . '/../model/User.php';
 
         $user = new \model\User();
 
@@ -61,16 +61,14 @@ class RegistrationController extends Controller
     }
     public function actionLogin()
     {
+        include __DIR__ . '/../view/login.php';
+        require __DIR__ . '/../model/User.php';
+        $user = new \model\User();
+        $user->login = $this->cleanParameters('login');
+        $user->pass = $this->cleanParameters('pass');
 
-        $login = filter_var(trim($_POST['login']), FILTER_SANITIZE_STRING);
-        $pass = filter_var(trim($_POST['pass']), FILTER_SANITIZE_STRING);
-
-
-        $mysql = new mysqli('localhost', 'root', 'root', 'test3');
-
-        $result = $mysql->query("SELECT * FROM `users` WHERE `login` = '$login' and `pass` = '$pass'");
-
-        $user = $result->fetch_assoc();
+        $database = new DataBase();
+        $database->login($user);
 
         if(count($user) == 0) {
             echo 'Пользователь не найден';
@@ -80,7 +78,6 @@ class RegistrationController extends Controller
         setcookie('user', $user['name'], time() + 3600, '/');
 
 
-        $mysql->close();
-        header('Location: /');
+//        header('Location: /');
     }
 }

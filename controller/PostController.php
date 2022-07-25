@@ -5,7 +5,7 @@ namespace controller;
 
 use model\DataBase;
 use PDO;
-
+require_once('Controller.php'); // если убрать - будет ошибка, что класс не найден
 class PostController extends Controller
 {
     public function actionIndex()
@@ -45,14 +45,17 @@ class PostController extends Controller
 
                 if ($flag == 0) {
                    // $database->savePost($post);
-                    $sql = 'INSERT INTO post (title, body, author_id) VALUES (:title, :body, :author_id)';
-                    $parameters = [
-                        'title' => $post->title,
-                        'body' => $post->body,
-                        'author_id' => 1,
-                    ];
+//                    $sql = 'INSERT INTO post (title, body, author_id) VALUES (:title, :body, :author_id)';
+//                    $parameters = [
+//                        'title' => $post->title,
+//                        'body' => $post->body,
+//                        'author_id' => 1,
+//                    ];
 
-                    $database->execute($sql, $parameters);
+                    $database = new DataBase();
+                    $database->savePost($post);
+
+//                    $database->execute($sql, $parameters);
                 }
             }
         }

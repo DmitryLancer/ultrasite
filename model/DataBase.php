@@ -1,6 +1,7 @@
 <?php
 
 namespace model;
+use controller\Controller;
 use PDO;
 
 class DataBase
@@ -16,6 +17,7 @@ class DataBase
     {
         $stmt = $this->dbh->prepare($sql);
         $result = $stmt->execute($parameters);
+//        $statement = $dbh->query($sql);
 
         return $result;
     }
@@ -46,5 +48,16 @@ class DataBase
             'gender' => $user->gender,
         ];
         $result = $stmt->execute($parameters);
+    }
+
+    public function login($user)
+    {
+
+        $sql = "SELECT * FROM `users` WHERE `login` = '$login' and `pass` = '$pass'";
+        $user->fetch_assoc();
+
+//        $sql = $login->prepareInsertSQL();
+//        $parameters = $login->prepareParameters();
+//        $database->execute($sql, $parameters);
     }
 }
