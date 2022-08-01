@@ -5,20 +5,29 @@ namespace controller;
 use model\DataBase;
 use mysqli;
 use PDO;
+use model\User;
+
 
 
 
 class RegistrationController extends Controller
 {
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     public function actionIndex()
     {
         include __DIR__ . '/../view/reigistration.php';
 
+<<<<<<< Updated upstream
         require_once __DIR__ . '/../model/User.php';
 
         $user = new \model\User();
+=======
+        $user = new User();
+>>>>>>> Stashed changes
 
         //to do: Переписать часть кода
         $user->login = $this->cleanParameters('login');
@@ -66,6 +75,25 @@ class RegistrationController extends Controller
             }
         }
     }
+<<<<<<< Updated upstream
+=======
+    public function actionLogin()
+    {
+        $user = new User();
+        $user->login = $this->cleanParameters('login');
+        $user->pass = $this->cleanParameters('pass');
+
+        $database = new DataBase();
+        $isExist = $database->login($user);
+
+        if($isExist) {
+            setcookie('user', $user->login, time() + 3600, '/');
+        } else {
+            echo 'Пользователь не найден'; // можно сделать отдельную страницу с ошибкой
+        }
+
+
+>>>>>>> Stashed changes
 
 
 }
