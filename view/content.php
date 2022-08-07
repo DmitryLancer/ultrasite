@@ -1,9 +1,3 @@
-<?php
-
-include_once __DIR__ . '/../controller/PostController.php';
-
-?>
-
 
 
 

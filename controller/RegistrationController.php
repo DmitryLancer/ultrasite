@@ -37,6 +37,7 @@ class RegistrationController extends Controller
             $database->execute($sql, $parameters);
 
             if ($result = $_POST['action'] == 'registration') {
+                $errors = [];
                 include_once __DIR__ . '/../view/content.php';
 
             } else {
