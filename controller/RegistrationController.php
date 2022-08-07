@@ -15,7 +15,9 @@ class RegistrationController extends Controller
 
     public function actionIndex()
     {
-        include __DIR__ . '/../view/reigistration.php';
+        if (empty($_POST['action'])) {
+            include __DIR__ . '/../view/reigistration.php';
+        }
 
         $user = new User();
 

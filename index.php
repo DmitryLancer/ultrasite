@@ -31,11 +31,18 @@ if(empty($POST)) {
 }
 
 
-if ($_POST['action'] == 'post') {
-    include_once __DIR__ . '/controller/PostController.php';
-    $postController = new \controller\PostController();
-    $postController->actionIndex();
+
+
+
+if (!empty($_POST['action'])) {
+    if ($_POST['action'] == 'post') {
+        include_once __DIR__ . '/controller/PostController.php';
+        $postController = new \controller\PostController();
+        $postController->actionIndex();
+    }
 }
+
+
 
 //if(empty($POST)) {
 //    include_once __DIR__ . '/controller/LoginController.php';
