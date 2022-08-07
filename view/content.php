@@ -20,7 +20,12 @@
                 echo $errors['success'];
             }?>
 			<p>Заголовок: </p>
-			<input type="text" class="form-control" name="title" id="title" value="<?php echo $_POST['title'] ?>"> <br>
+			<input type="text" class="form-control" name="title" id="title" value="
+			<?php if (!empty($_POST['title'])) {
+                echo $_POST['title'];
+			}
+            ?>"> <br>
+
             <?php
             if (!empty($errors['title'])) {
                 echo $errors['title'];
