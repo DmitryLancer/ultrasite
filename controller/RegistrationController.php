@@ -49,6 +49,7 @@ class RegistrationController extends Controller
 
         if (!empty($_POST)) {
             if (!$user->isLoginValid()) {
+                debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
                 echo 'Недопустимая длина логина';
             } else {
                 if (!$user->isPassValid()) {
