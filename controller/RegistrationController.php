@@ -13,21 +13,12 @@ use model\User;
 class RegistrationController extends Controller
 {
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
     public function actionIndex()
     {
         include __DIR__ . '/../view/reigistration.php';
 
-<<<<<<< Updated upstream
-        require_once __DIR__ . '/../model/User.php';
-
-        $user = new \model\User();
-=======
         $user = new User();
->>>>>>> Stashed changes
+
 
         //to do: Переписать часть кода
         $user->login = $this->cleanParameters('login');
@@ -48,9 +39,9 @@ class RegistrationController extends Controller
             if ($result = $_POST['action'] == 'registration') {
                 include_once __DIR__ . '/../view/content.php';
 
-                } else {
-                    echo 'Не удалось сохранить в бд';
-                }
+            } else {
+                echo 'Не удалось сохранить в бд';
+            }
         }
 
         if (!empty($_POST)) {
@@ -75,8 +66,7 @@ class RegistrationController extends Controller
             }
         }
     }
-<<<<<<< Updated upstream
-=======
+
     public function actionLogin()
     {
         $user = new User();
@@ -86,14 +76,10 @@ class RegistrationController extends Controller
         $database = new DataBase();
         $isExist = $database->login($user);
 
-        if($isExist) {
+        if ($isExist) {
             setcookie('user', $user->login, time() + 3600, '/');
         } else {
             echo 'Пользователь не найден'; // можно сделать отдельную страницу с ошибкой
         }
-
-
->>>>>>> Stashed changes
-
-
+    }
 }

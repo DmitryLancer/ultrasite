@@ -21,17 +21,16 @@ class DataBase
     }
 
 
-<<<<<<< Updated upstream
-=======
-        $parameters = [
-            'login' => $user->login,
-            'pass' => $user->pass,
-            'name' => $user->name,
-            'age' => $user->age,
-            'gender' => $user->gender,
-        ];
-        $result = $stmt->execute($parameters);
-    }
+
+//        $parameters = [
+//            'login' => $user->login,
+//            'pass' => $user->pass,
+//            'name' => $user->name,
+//            'age' => $user->age,
+//            'gender' => $user->gender,
+//        ];
+//        $result = $stmt->execute($parameters);
+//    }
 
     public function login($user)
     {
@@ -50,5 +49,4 @@ class DataBase
             return true;
         }
     }
->>>>>>> Stashed changes
 }
